@@ -25,9 +25,11 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.Controllers
         }
 
         // GET: ProductsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = _productsDAO.ListProduct(id);
+
+            return View(model);
         }
 
         // GET: ProductsController/Create

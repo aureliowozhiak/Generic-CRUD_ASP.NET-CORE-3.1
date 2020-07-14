@@ -19,9 +19,16 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.DAL
             _context.Add(product);
             _context.SaveChanges();
         }
+
         public List<Product> List()
         {
             return _context.Product.ToList();
+        }
+        public Product ListProduct(Guid id)
+        {
+
+            return _context.Product.Find(id);
+
         }
     }
 }
