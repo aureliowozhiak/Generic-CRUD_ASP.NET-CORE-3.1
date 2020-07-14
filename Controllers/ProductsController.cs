@@ -20,7 +20,8 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.Controllers
         // GET: ProductsController
         public ActionResult Index()
         {
-            return View();
+            var model = _productsDAO.List();
+            return View(model);
         }
 
         // GET: ProductsController/Details/5
