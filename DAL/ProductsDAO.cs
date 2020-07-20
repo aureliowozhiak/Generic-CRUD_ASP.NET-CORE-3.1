@@ -24,16 +24,19 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.DAL
         {
             return _context.Product.ToList();
         }
-        public Product ListProduct(Guid id)
+        public Product FindProduct(Guid id)
         {
-
             return _context.Product.Find(id);
-
         }
         public void Delete(Guid id)
         {
-            var product = _context.Product.Find(id);
+            var product = FindProduct(id);
             _context.Remove(product);
+            _context.SaveChanges();
+        }
+        public void Update(Product product)
+        {
+            _context.Update(product);
             _context.SaveChanges();
         }
     }

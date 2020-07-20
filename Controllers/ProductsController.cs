@@ -27,7 +27,7 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.Controllers
         // GET: ProductsController/Details/5
         public ActionResult Details(Guid id)
         {
-            var model = _productsDAO.ListProduct(id);
+            var model = _productsDAO.FindProduct(id);
 
             return View(model);
         }
@@ -58,17 +58,18 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.Controllers
         // GET: ProductsController/Edit/5
         public ActionResult Edit(Guid id)
         {
-            var model = _productsDAO.ListProduct(id);
+            var model = _productsDAO.FindProduct(id);
             return View(model);
         }
 
         // POST: ProductsController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Guid id, IFormCollection collection)
+        public ActionResult Edit(Product product)
         {
             try
             {
+                _productsDAO.Update(product);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -80,7 +81,7 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.Controllers
         // GET: ProductsController/Delete/5
         public ActionResult Delete(Guid id)
         {
-            var model = _productsDAO.ListProduct(id);
+            var model = _productsDAO.FindProduct(id);
             return View(model);
         }
 
