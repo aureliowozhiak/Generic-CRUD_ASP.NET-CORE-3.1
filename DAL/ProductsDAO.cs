@@ -30,5 +30,11 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.DAL
             return _context.Product.Find(id);
 
         }
+        public void Delete(Guid id)
+        {
+            var product = _context.Product.Find(id);
+            _context.Remove(product);
+            _context.SaveChanges();
+        }
     }
 }

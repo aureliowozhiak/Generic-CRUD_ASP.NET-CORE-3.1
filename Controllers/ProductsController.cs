@@ -56,15 +56,16 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.Controllers
         }
 
         // GET: ProductsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = _productsDAO.ListProduct(id);
+            return View(model);
         }
 
         // POST: ProductsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
@@ -77,18 +78,21 @@ namespace Generic_CRUD_ASP.NET_CORE_3._1.Controllers
         }
 
         // GET: ProductsController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = _productsDAO.ListProduct(id);
+            return View(model);
         }
 
         // POST: ProductsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
+                _productsDAO.Delete(id);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
